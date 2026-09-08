@@ -11,7 +11,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Display information received from the Application repository
       - name: Display Received Application Information
         run: |
           echo "SecOps Repo received Application trigger"
@@ -19,7 +18,6 @@ jobs:
           echo "Application Branch: ${{ github.event.client_payload.branch }}"
           echo "Application Commit SHA: ${{ github.event.client_payload.commit_sha }}"
 
-      # Step 2: Checkout the exact commit from the Application repository
       - name: Checkout Exact Application Commit
         uses: actions/checkout@v4
         with:
@@ -28,14 +26,12 @@ jobs:
           path: application
           token: ${{ secrets.CROSS_REPO_TOKEN }}
 
-      # Step 3: Verify that the correct commit was checked out
       - name: Verify Checked Out Commit
         run: |
           echo "Application Source Successfully checked out"
           echo "Checked Out Commit SHA:"
           git -C application rev-parse HEAD
 
-      # Step 4: Scan Application source code for secrets
       - name: Scan for Application Secrets
         run: |
           docker run --rm \
