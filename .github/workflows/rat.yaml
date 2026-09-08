@@ -24,7 +24,6 @@ jobs:
           repository: ${{ github.event.client_payload.repository }}
           ref: ${{ github.event.client_payload.commit_sha }}
           path: application
-          token: ${{ secrets.CROSS_REPO_TOKEN }}
 
       - name: Verify Checked Out Commit
         run: |
