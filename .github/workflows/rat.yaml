@@ -1,4 +1,4 @@
-name: Step 2 - Receive Application Trigger
+name: SecOps pipeline
 
 on:
   repository_dispatch:
@@ -6,8 +6,9 @@ on:
       - application_push
 
 jobs:
+  #stage 1: secret Scanning
   receive-trigger:
-    name: Verify Cross-Repo Communication
+    name: GItleaks Secret Scanning
     runs-on: ubuntu-latest
 
     steps:
